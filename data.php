@@ -8,7 +8,7 @@ function getDataForHost(string $hostname): array {
 		return [];
 	}
 
-	sort($filename);
+	rsort($filename);
 	$filename = $filename[0];
 
 	$loadAverages = array_map(function ($a) use ($hostname) {

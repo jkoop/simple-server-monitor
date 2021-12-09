@@ -1,5 +1,10 @@
 <?php
 
+// cli only
+if (php_sapi_name() != 'cli') {
+	die('This script can only be run from the command line.');
+}
+
 chdir(__DIR__);
 
 include('hosts.php');
@@ -18,7 +23,7 @@ foreach ($hosts as $hostname => $cores) {
 	$line = exec('timeout 15 ssh ' . escapeshellarg($hostname) . ' TZ=Etc/UTC uptime');
 
 	if ($line === '') {
-		echo "!!! Failed to connect to $hostname. Check your keys and routing\n";
+		echo "!!! Failed to connect to $hostname. Maybe you need to run\n    ssh-copy-id " . escapeshellarg($hostname) . "\n";
 		continue;
 	}
 
