@@ -1,0 +1,11 @@
+<?php
+
+$hosts = [
+    /**
+     * Many Intel CPUs have "hyperthreading" enabled, so there could be twice as many threads as cores.
+     * Use something like `nproc` to get the number of threads.
+     */
+
+    // hostname => cpu threads
+    'localhost' => 8,
+];
