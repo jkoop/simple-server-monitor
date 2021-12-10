@@ -7,6 +7,10 @@ Web-based charts of load averages without installing anything on the remote serv
 
 It uses SSH to connect to the remote server and run a command to get the average load via `uptime` and saves the output to a file. It can then parse the file with regex, and displays the load averages in a graph.
 
+Hostnames set in `hosts.php` are passed to SSH ass the hostname to connect to. You could define a user there (like `"user@hostname"`), but you should [set up `.ssh/config`](https://linuxize.com/post/using-the-ssh-config-file) instead.
+
+SSH will assume you've already set up your SSH key, and will use that to connect to the remote server.
+
 ## Installation
 
 ```sh
