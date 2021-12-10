@@ -1,0 +1,19 @@
+.chart-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem;
+}
+
+.chart-container,
+.chart-container canvas {
+    z-index: 0;
+}
+
+select {
+    position: relative;
+    z-index: 100;
+}
