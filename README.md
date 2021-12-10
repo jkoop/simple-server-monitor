@@ -9,7 +9,7 @@ It uses SSH to connect to the remote server and run a command to get the average
 
 Hostnames set in `hosts.php` are passed to SSH ass the hostname to connect to. You could define a user there (like `"user@hostname"`), but you should [set up `.ssh/config`](https://linuxize.com/post/using-the-ssh-config-file) instead.
 
-SSH will assume you've already set up your SSH key, and will use that to connect to the remote server.
+SSH will assume you've already [set up your SSH key](https://linuxize.com/post/how-to-setup-passwordless-ssh-login), and will use that to connect to the remote server.
 
 ## Installation
 
