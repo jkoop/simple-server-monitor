@@ -37,3 +37,12 @@ If the problem is a recording problem, check the following:
     + recorder and web server should be able to read from it
 + SSH
   + Try running `php /path/to/record.php` from terminal yourself, and read the output. It sometimes gives hints
+
+## To do (in rough order of priority)
+
++ Use SQLite instead of files
++ PHP send data more than 24 hours into the past (currently breaks at midnight UTC)
++ JS request only what's needed
++ PHP send data more efficiently (fewer data points than 1 per 2 pixels)
++ PHP offer averages wider than 15 minutes: 1h, 6h, 1d, 1w, 1m
++ Add uptime and memory/disk usage
