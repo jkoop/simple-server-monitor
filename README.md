@@ -1,7 +1,11 @@
 # Simple Server Monitor
 
 Web-based charts of load averages without installing anything on the remote server
-<!-- , uptimes, and memory usage -->
+<!-- , uptimes, and memory/disk usage -->
+
+## How it works
+
+It uses SSH to connect to the remote server and run a command to get the average load via `uptime` and saves the output to a file. It can then parse the file with regex, and displays the load averages in a graph.
 
 ## Installation
 
