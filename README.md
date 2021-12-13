@@ -34,7 +34,7 @@ Add remote hosts to `hosts.php` with any text editor
 If the problem is a recording problem, check the following:
 
 + File permissions
-  + `data/`
+  + `db.sqlite`
     + recorder should be able to write to it
     + web server should be able to read from it
   + `hosts.php`
@@ -44,10 +44,16 @@ If the problem is a recording problem, check the following:
 
 ## To do (in rough order of priority)
 
-+ Use SQLite instead of files
 + PHP send data more than 24 hours into the past (currently breaks at midnight UTC)
-+ Use color theme for graphs to add dark theme? (https://github.com/nagix/chartjs-plugin-colorschemes)
 + JS request only what's needed
 + PHP send data more efficiently (fewer data points than 1 per 2 pixels)
 + PHP offer averages wider than 15 minutes: 1h, 6h, 1d, 1w, 1m
 + Add uptime and memory/disk usage
+<!--
+
+load averages: cat /proc/loadavg
+uptime: uptime -p
+disk usage: df | grep -v '^tmpfs ' | grep -v '^/dev/loop' | grep -v '^udev '
+memory usage: free
+
+-->

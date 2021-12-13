@@ -17,8 +17,8 @@
 	<canvas id="loadAverage"></canvas>
 </div>
 
-<select onchange="selectAverage()">
-	<option>1m</option>
-	<option selected>5m</option>
-	<option>15m</option>
+<select onchange="updateChart()">
+	<option value="loadavg-1min">1m</option>
+	<option value="loadavg-5min" selected>5m</option>
+	<option value="loadavg-15min">15m</option>
 </select>
