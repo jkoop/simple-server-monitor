@@ -48,27 +48,61 @@ $data = [];
 
 foreach ($hosts as $hostname => $cores) {
 	$data[$hostname] = getDataForHost($hostname);
+	$data[$hostname] = array_map(function ($record) {
+		$record['time'] = substr($record['time'], 0, -3);
+		return $record;
+	},	$data[$hostname]);
 }
 
-$chartData = [];
-
 date_default_timezone_set('Etc/UTC');
+
+// foreach ($data as $host) {
+// 	foreach ($host as $record) {
+// 		if ($record['time'] === null) continue;
+
+// 		$chartData[] = [
+// 			'x' => strtotime(date('Y-m-d ') . $record['time']) * 1000,
+// 			$record['hostname'] . '-1m' => $record['load']['1'] / $hosts[$record['hostname']],
+// 			$record['hostname'] . '-5m' => $record['load']['5'] / $hosts[$record['hostname']],
+// 			$record['hostname'] . '-15m' => $record['load']['15'] / $hosts[$record['hostname']],
+// 		];
+// 	}
+// }
+
+$chartData = [
+	1 => [],
+	5 => [],
+	15 => [],
+];
 
 foreach ($data as $host) {
 	foreach ($host as $record) {
 		if ($record['time'] === null) continue;
 
-		$chartData[] = [
-			'x' => strtotime(date('Y-m-d ') . $record['time']) * 1000,
-			$record['hostname'] . '-1m' => $record['load']['1'] / $hosts[$record['hostname']],
-			$record['hostname'] . '-5m' => $record['load']['5'] / $hosts[$record['hostname']],
-			$record['hostname'] . '-15m' => $record['load']['15'] / $hosts[$record['hostname']],
+		$time = strtotime(date('Y-m-d ') . $record['time']);
+
+		foreach ([1, 5, 15] as $avg) {
+			$chartData[$avg][$time][] = $record['load'][$avg] / $hosts[$record['hostname']];
+		}
+	}
+}
+
+$outputData = [];
+
+foreach ($chartData as $avg => $avgData) {
+	foreach ($avgData as $time => $data) {
+		$data = array_sum($data) / count($data);
+		$data = round($data, 4);
+
+		$outputData[] = [
+			'x' => $time * 1000,
+			'avg-liddell-' . $avg . 'm' => $data,
 		];
 	}
 }
 
 header('Content-Type: application/json');
 echo json_encode([
-	'hosts' => array_keys($hosts),
-	'chart' => $chartData
+	'hosts' => ['avg-liddell'],
+	'chart' => $outputData,
 ]);
