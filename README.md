@@ -1,5 +1,9 @@
 # Simple Server Monitor
 
+```plain
+!! README out of date !!
+```
+
 Web-based charts of load averages without installing anything on the remote server
 <!-- , uptimes, and memory/disk usage -->
 
