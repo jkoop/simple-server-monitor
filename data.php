@@ -1,6 +1,8 @@
 <?php
 
-include('lib/common.php');
+function getDataForHost(string $hostname): array {
+	// get name of latest file
+	$filename = glob('data/' . $hostname . '/*');
 
 	if (count($filename) === 0) {
 		return [];
